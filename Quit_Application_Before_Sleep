@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'erb'
+
+TEMPLATE_DIR = 'templates'
+
+ARGV.each do |application|
+  template = ERB.new(File.new("#{TEMPLATE_DIR}/Quit_Application_Before_Sleep.ikex.erb").read, nil, "%")
+  @application = application
+  File.open("Quit_#{application}_Before_Sleep.ikex", 'w') do |f|
+    f.write template.result(binding)
+  end
+end
